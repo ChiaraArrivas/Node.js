@@ -12,14 +12,18 @@ function luckyDraw(player) {
   });
 }
 
-luckyDraw("joe")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
-
-luckyDraw("Caroline")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
-
-luckyDraw("Sabrina")
-  .then((data) => console.log(data))
-  .catch((error) => console.log(error));
+luckyDraw("Joe")
+  .then((result) => {
+    console.log(result);
+    return luckyDraw("Caroline");
+  })
+  .then((result) => {
+    console.log(result);
+    return luckyDraw("Sabrina");
+  })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
