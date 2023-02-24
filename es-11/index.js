@@ -2,6 +2,7 @@ const express = require("express");
 const expressAsyncError = require("express-async-errors");
 const morgan = require("morgan");
 require("dotenv").config();
+app.use(express.json());
 
 const port = process.env.SERVER;
 
