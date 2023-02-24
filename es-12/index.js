@@ -1,6 +1,7 @@
 const express = require("express");
 const expressAsyncError = require("express-async-errors");
 const morgan = require("morgan");
+const joi = require("Joi");
 require("dotenv").config();
 
 const port = process.env.SERVER;
@@ -31,14 +32,22 @@ app.get("/api/planets/:id", (req, res) => {
     res.status(200).json({ planet: planet });
 });
 
+const planetSchema = joi.object({
+    id: joi.number().integer().required(),
+    name: joi.string().required()
+})
+
 app.post("/api/planets", (req, res) => {
     const { id, name } = req.body;
     const newPlanet = { id, name };
-    planets = [...planets, newPlanet];
+    const validateNewPlanet = planetSchema.validate(newPlanet);
 
-    console.log(planets);
-
-    res.status(201).json({ msg: "The planet was created." })
+    if (validateNewPlanet.error) {
+        return res.status(400).json({ msg: validateNewPlanet.error })
+    } else {
+        planets = [...planets, newPlanet];
+        res.status(201).json({ msg: "The planet was created." })
+    }
 });
 
 app.put("/api/planets/:id", (req, res) => {
