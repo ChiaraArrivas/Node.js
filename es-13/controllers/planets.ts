@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-const joi = require("Joi");
+const joi = require("joi");
 
 type Planet = {
     id: number,

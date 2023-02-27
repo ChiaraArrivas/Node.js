@@ -1,14 +1,14 @@
-import express from "express";
-import "express-async-errors";
-import morgan from "morgan";
-import {
+const express = require("express");
+const esxpressAsyncErrors = require("express-async-errors");
+const morgan = require("morgan");
+const {
     getAll,
     getOneById,
     create,
     updateById,
     deleteById
-} from "./controllers/planets";
-import dotenv from "dotenv";
+} = require("./controllers/planets");
+const dotenv = require("dotenv");
 
 dotenv.config();
 const port = process.env.SERVER;
