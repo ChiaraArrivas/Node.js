@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { toNamespacedPath } from "path";
 const joi = require("joi");
 const db = require("../db");
 
